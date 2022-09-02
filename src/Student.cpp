@@ -42,7 +42,7 @@ Student::Student(string id,string name)
 
 void Student::showScore()
 {
-    cout<<"id\tname\tChinese\tEnglish\tMaths\tTotal"<<endl;
+    cout<<"id\t|name\t|Chinese|English|Maths\t|Total"<<endl;
     cout<<this->id<<'\t'<<this->name<<'\t'<<this->scoreChinese<<'\t'<<this->scoreEnglish<<'\t'<<this->scoreMaths<<'\t'<<this->scoreTotal<<endl;
 }
 

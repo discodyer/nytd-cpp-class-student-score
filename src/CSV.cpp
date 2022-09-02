@@ -120,11 +120,13 @@ void CSV::readStudents(vector<Student*> & studentList)
     while (inFile.good())
     {
         // ++count;
+        cout<<'.';
         vector<string> v;
         split(tmpLine, v, ","); // 将读取到的行切分成字符串数组v
         studentList.push_back(new Student(v[0],v[1],stoi(v[2]),stoi(v[3]),stoi(v[4]),stoi(v[5]))); // 将读取到的一行转换为Student对象
         inFile.getline(tmpLine, 1000); // 读取下一行
     }
+    cout<<"Done."<<endl;
 }
 
 void CSV::readTeachers(vector<Teacher*> & teacherList)
@@ -192,11 +194,13 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
     while (inFile.good())
     {
         // ++count;
+        cout<<'.';
         vector<string> v;
         split(tmpLine, v, ","); // 将读取到的行切分成字符串数组v
         teacherList.push_back(new Teacher(v[0],v[1],subjectToInt(v[2]))); // 将读取到的一行转换为Student对象
         inFile.getline(tmpLine, 1000); // 读取下一行
     }
+    cout<<"Done."<<endl;
 }
 
 int subjectToInt(string subject)
@@ -292,4 +296,19 @@ void CSV::writeStudents(vector<Student*> & studentList)
     }
     outFile.close();
     cout<< "File saved at : "<<pathToStudents<<endl;
+}
+
+void CSV::writeTeachers(vector<Teacher*> & teacherList)
+{
+    ofstream outFile;
+    outFile.open(pathToTeachers);
+    outFile << "id,name,subject" << endl;
+    for (auto it : teacherList)
+    {
+        outFile <<it->getID()<<','
+                <<it->getName()<<','
+                <<intToSubject(it->getSubject())<<endl;
+    }
+    outFile.close();
+    cout<< "File saved at : "<<pathToTeachers<<endl;
 }

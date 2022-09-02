@@ -23,7 +23,7 @@ public:
     void setSubject(int subject);
 
     string getName();
-    string getID();
+    string getID() ;
     int getSubject();
     
 };
