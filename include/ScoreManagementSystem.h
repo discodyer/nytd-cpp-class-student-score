@@ -17,7 +17,7 @@ private:
     vector<Teacher*> teacherList;
     CSV csv;
 public:
-    ScoreManagementSystem(string pathToStudents, string pathToTeachers); // æ— å‚æ„é€ å‡½æ•°
+    ScoreManagementSystem(string pathToStudents, string pathToTeachers); // ¹¹Ôìº¯Êı
     ~ScoreManagementSystem();
     void start();
 };

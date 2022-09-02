@@ -15,7 +15,7 @@ int subjectToInt(string subject);
 
 string intToSubject(int subject);
 
-void split(string str,vector<string> &v,string spacer); // csv鏉＄洰鍒嗗壊鍑芥暟
+void split(string str,vector<string> &v,string spacer); // csv条目分割函数
 
 class CSV
 {
@@ -28,10 +28,10 @@ public:
     void setPath(string pathToStudents, string pathToTeachers);
     void init(vector<Student*> * studentList, vector<Teacher*> * teacherList);
 
-    void readStudents(vector<Student*>& studentList);
+    void readStudents(vector<Student*> & studentList);
     void readTeachers(vector<Teacher*> & teacherList);
-    void writeStudients();
-    void writeTeachers();
+    void writeStudents(vector<Student*> & studentList);
+    void writeTeachers(vector<Teacher*> & teacherList);
 };
 
 #endif

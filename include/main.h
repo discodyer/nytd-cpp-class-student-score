@@ -4,5 +4,5 @@
 #include "getopt.h"
 #include "ScoreManagementSystem.h"
 
-void help();  // 甯姪鏂囨湰
-void abort();  // 蹇界暐鍑芥暟
+void help();  // 帮助文本
+void abort();  // 忽略函数

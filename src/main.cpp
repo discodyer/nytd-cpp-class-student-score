@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     int opt;
     opterr = 0;
     string pathToStudents = "students.csv", pathToTeachers = "teachers.csv"; // the path to .csv list files
-    while( (opt = getopt(argc, argv, "hs:t:")) != -1 ) // è¯»å–å‘½ä»¤è¡Œå‚æ•°
+    while( (opt = getopt(argc, argv, "hs:t:")) != -1 ) // ¶ÁÈ¡ÃüÁîĞĞ²ÎÊı
     {
         switch (opt)
         {
@@ -50,12 +50,12 @@ int main(int argc, char **argv)
         cout<<"using default location."<<endl;
     }
 
-    ScoreManagementSystem S(pathToStudents, pathToTeachers);  // å®ä¾‹åŒ–ç®¡ç†ç³»ç»Ÿ
-    S.start();  // å…¥å£å‡½æ•°
+    ScoreManagementSystem S(pathToStudents, pathToTeachers);  // ÊµÀı»¯¹ÜÀíÏµÍ³
+    S.start();  // Èë¿Úº¯Êı
     return 0;
 }
 
-void help() // å¸®åŠ©æ–‡æœ¬
+void help() // °ïÖúÎÄ±¾
 {
     cout<<"------------------------------------------"<<endl;
     cout<<"-s   [path to Studients.csv]"<<endl;

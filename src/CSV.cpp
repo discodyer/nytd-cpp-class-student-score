@@ -13,8 +13,8 @@ CSV::CSV()
 /**
  * @brief Construct a new CSV::CSV object
  * 
- * @param pathToStudents å­¦ç”Ÿæ•°æ®æ–‡ä»¶è·¯å¾„
- * @param pathToTeachers æ•™å¸ˆæ•°æ®æ–‡ä»¶è·¯å¾„
+ * @param pathToStudents Ñ§ÉúÊı¾İÎÄ¼şÂ·¾¶
+ * @param pathToTeachers ½ÌÊ¦Êı¾İÎÄ¼şÂ·¾¶
  */
 CSV::CSV(string pathToStudents, string pathToTeachers)
 {
@@ -25,8 +25,8 @@ CSV::CSV(string pathToStudents, string pathToTeachers)
 /**
  * @brief 
  * 
- * @param pathToStudents å­¦ç”Ÿæ•°æ®æ–‡ä»¶è·¯å¾„
- * @param pathToTeachers æ•™å¸ˆæ•°æ®æ–‡ä»¶è·¯å¾„
+ * @param pathToStudents Ñ§ÉúÊı¾İÎÄ¼şÂ·¾¶
+ * @param pathToTeachers ½ÌÊ¦Êı¾İÎÄ¼şÂ·¾¶
  */
 void CSV::setPath(string pathToStudents, string pathToTeachers)
 {
@@ -50,16 +50,16 @@ void CSV::init(vector<Student*> * studentList, vector<Teacher*> * teacherList)
 }
 
 /**
- * @brief è¯»å–å­¦ç”Ÿæ•°æ®
+ * @brief ¶ÁÈ¡Ñ§ÉúÊı¾İ
  * 
- * @param studentList å­¦ç”Ÿæ•°ç»„
+ * @param studentList Ñ§ÉúÊı×é
  */
 void CSV::readStudents(vector<Student*> & studentList)
 {
     ifstream inFile;
     cout<<"opening file : "<< this->pathToStudents << endl;
     inFile.open(this->pathToStudents);
-    if(!inFile.is_open()) // åˆ¤æ–­æ–‡ä»¶èƒ½å¦æ‰“å¼€
+    if(!inFile.is_open()) // ÅĞ¶ÏÎÄ¼şÄÜ·ñ´ò¿ª
     {
         cout<<"Could not open students file. Create a new file here?[Y/n]";
         char opt = getchar();
@@ -83,7 +83,7 @@ void CSV::readStudents(vector<Student*> & studentList)
     char tmpLine[1000] = "";
     inFile.getline(tmpLine, 1000);
     string tmpStringLine = tmpLine;
-    if ( tmpStringLine == "id,name,Chinese,English,Maths,Total") // æ–‡ä»¶åˆæ³•æ€§æ£€æµ‹
+    if ( tmpStringLine == "id,name,Chinese,English,Maths,Total") // ÎÄ¼şºÏ·¨ĞÔ¼ì²â
     {
         cout<<"file format is correct."<<endl;
     }
@@ -110,20 +110,20 @@ void CSV::readStudents(vector<Student*> & studentList)
     }
 
     // vector <Student>().swap(studentList);
-    for (auto it : studentList)//æ‰‹åŠ¨å†…å­˜é‡Šæ”¾
+    for (auto it : studentList)//ÊÖ¶¯ÄÚ´æÊÍ·Å
 	    delete it;
 	studentList.clear();
 	vector<Student*>().swap(studentList);
 
     // int count = 0;
-    inFile.getline(tmpLine, 1000);   // è¯»å–ä¸€è¡Œæ•°æ®
+    inFile.getline(tmpLine, 1000);   // ¶ÁÈ¡Ò»ĞĞÊı¾İ
     while (inFile.good())
     {
         // ++count;
         vector<string> v;
-        split(tmpLine, v, ","); // å°†è¯»å–åˆ°çš„è¡Œåˆ‡åˆ†æˆå­—ç¬¦ä¸²æ•°ç»„v
-        studentList.push_back(new Student(v[0],v[1],stoi(v[2]),stoi(v[3]),stoi(v[4]),stoi(v[5]))); // å°†è¯»å–åˆ°çš„ä¸€è¡Œè½¬æ¢ä¸ºStudentå¯¹è±¡
-        inFile.getline(tmpLine, 1000); // è¯»å–ä¸‹ä¸€è¡Œ
+        split(tmpLine, v, ","); // ½«¶ÁÈ¡µ½µÄĞĞÇĞ·Ö³É×Ö·û´®Êı×év
+        studentList.push_back(new Student(v[0],v[1],stoi(v[2]),stoi(v[3]),stoi(v[4]),stoi(v[5]))); // ½«¶ÁÈ¡µ½µÄÒ»ĞĞ×ª»»ÎªStudent¶ÔÏó
+        inFile.getline(tmpLine, 1000); // ¶ÁÈ¡ÏÂÒ»ĞĞ
     }
 }
 
@@ -132,7 +132,7 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
     ifstream inFile;
     cout<<"opening file : "<< this->pathToTeachers << endl;
     inFile.open(this->pathToTeachers);
-    if(!inFile.is_open()) // åˆ¤æ–­æ–‡ä»¶èƒ½å¦æ‰“å¼€
+    if(!inFile.is_open()) // ÅĞ¶ÏÎÄ¼şÄÜ·ñ´ò¿ª
     {
         cout<<"Could not open teacher file. Create a new file here?[Y/n]";
         char opt = getchar();
@@ -156,7 +156,7 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
     char tmpLine[1000] = "";
     inFile.getline(tmpLine, 1000);
     string tmpStringLine = tmpLine;
-    if ( tmpStringLine == "id,name,subject") // æ–‡ä»¶åˆæ³•æ€§æ£€æµ‹
+    if ( tmpStringLine == "id,name,subject") // ÎÄ¼şºÏ·¨ĞÔ¼ì²â
     {
         cout<<"file format is correct."<<endl;
     }
@@ -182,20 +182,20 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
         }
     }
 
-    for (auto it : teacherList)//æ‰‹åŠ¨å†…å­˜é‡Šæ”¾
+    for (auto it : teacherList)//ÊÖ¶¯ÄÚ´æÊÍ·Å
 	    delete it;
 	teacherList.clear();
 	vector<Teacher*>().swap(teacherList);
 
     // int count = 0;
-    inFile.getline(tmpLine, 1000);   // è¯»å–ä¸€è¡Œæ•°æ®
+    inFile.getline(tmpLine, 1000);   // ¶ÁÈ¡Ò»ĞĞÊı¾İ
     while (inFile.good())
     {
         // ++count;
         vector<string> v;
-        split(tmpLine, v, ","); // å°†è¯»å–åˆ°çš„è¡Œåˆ‡åˆ†æˆå­—ç¬¦ä¸²æ•°ç»„v
-        teacherList.push_back(new Teacher(v[0],v[1],subjectToInt(v[2]))); // å°†è¯»å–åˆ°çš„ä¸€è¡Œè½¬æ¢ä¸ºStudentå¯¹è±¡
-        inFile.getline(tmpLine, 1000); // è¯»å–ä¸‹ä¸€è¡Œ
+        split(tmpLine, v, ","); // ½«¶ÁÈ¡µ½µÄĞĞÇĞ·Ö³É×Ö·û´®Êı×év
+        teacherList.push_back(new Teacher(v[0],v[1],subjectToInt(v[2]))); // ½«¶ÁÈ¡µ½µÄÒ»ĞĞ×ª»»ÎªStudent¶ÔÏó
+        inFile.getline(tmpLine, 1000); // ¶ÁÈ¡ÏÂÒ»ĞĞ
     }
 }
 
@@ -253,24 +253,43 @@ string intToSubject(int subject)
 }
 
 /**
- * @brief csvæ¡ç›®åˆ†å‰²å‡½æ•°
+ * @brief csvÌõÄ¿·Ö¸îº¯Êı
  * 
- * @param str è¾“å…¥çš„ä¸€è¡Œæ•°æ®
- * @param v åˆ†å‰²æ•°ç»„
- * @param spacer åˆ†éš”ç¬¦
+ * @param str ÊäÈëµÄÒ»ĞĞÊı¾İ
+ * @param v ·Ö¸îÊı×é
+ * @param spacer ·Ö¸ô·û
  */
 void split(string str,vector<string> &v,string spacer)
 {
     int pos1,pos2;
-    int len=spacer.length();     //è®°å½•åˆ†éš”ç¬¦çš„é•¿åº¦
+    int len=spacer.length();     //¼ÇÂ¼·Ö¸ô·ûµÄ³¤¶È
     pos1=0;
     pos2=str.find(spacer);
     while( pos2 != string::npos )
     {
         v.push_back( str.substr(pos1,pos2-pos1) );
         pos1 = pos2 + len;
-        pos2 = str.find(spacer,pos1);    // ä»strçš„pos1ä½ç½®å¼€å§‹æœå¯»spacer
+        pos2 = str.find(spacer,pos1);    // ´ÓstrµÄpos1Î»ÖÃ¿ªÊ¼ËÑÑ°spacer
     }
-    if(pos1 != str.length()) //åˆ†å‰²æœ€åä¸€ä¸ªéƒ¨åˆ†
+    if(pos1 != str.length()) //·Ö¸î×îºóÒ»¸ö²¿·Ö
        v.push_back(str.substr(pos1));
+}
+
+
+void CSV::writeStudents(vector<Student*> & studentList)
+{
+    ofstream outFile;
+    outFile.open(pathToStudents);
+    outFile << "id,name,Chinese,English,Maths,Total" << endl;
+    for (auto it : studentList)
+    {
+        outFile <<it->getID()<<','
+                <<it->getName()<<','
+                <<it->getScore(subjectToInt("Chinese"))<<','
+                <<it->getScore(subjectToInt("English"))<<','
+                <<it->getScore(subjectToInt("Maths"))<<','
+                <<it->getScore(114514)<<endl;
+    }
+    outFile.close();
+    cout<< "File saved at : "<<pathToStudents<<endl;
 }

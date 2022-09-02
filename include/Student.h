@@ -23,6 +23,8 @@ public:
     Student(string id, string name);
     Student();
 
+    string getID();
+    string getName();
     void setScore(int subject, int score);
     int getScore(int subject);
     void showScore();
