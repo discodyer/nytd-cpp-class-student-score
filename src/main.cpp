@@ -16,8 +16,8 @@ int main(int argc, char **argv)
 {
     int opt;
     opterr = 0;
-    string pathToStudents = "", pathToTeachers = "";
-    while( (opt = getopt(argc, argv, "hs:t:")) != -1 )
+    string pathToStudents = "students.csv", pathToTeachers = "teachers.csv"; // the path to .csv list files
+    while( (opt = getopt(argc, argv, "hs:t:")) != -1 ) // reading cmd options
     {
         switch (opt)
         {
@@ -55,10 +55,13 @@ int main(int argc, char **argv)
                 break;
         }
     }
+    if( argc == 1 ) // if no cmd options
+    {
+        cout<<"using default location."<<endl;
+    }
 
-    // ScoreManagementSystem S;
-    // S.init();
-    // S.start();
+    ScoreManagementSystem S(pathToStudents, pathToTeachers);
+    S.start();
     return 0;
 }
 
@@ -71,3 +74,4 @@ void help()
     cout<<"     Leave empty to create new .csv files."<<endl;
     cout<<"------------------------------------------"<<endl;
 }
+

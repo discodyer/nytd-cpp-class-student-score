@@ -15,3 +15,4 @@
 
 void help();
 void abort();
+void split(string str,vector<string> &v,string spacer);
