@@ -13,8 +13,8 @@ using namespace std;
 class ScoreManagementSystem
 {
 private:
-    vector<Student> studentList;
-    vector<Teacher> teacherList;
+    vector<Student*> studentList;
+    vector<Teacher*> teacherList;
     CSV csv;
 public:
     ScoreManagementSystem(string pathToStudents, string pathToTeachers); // 无参构造函数

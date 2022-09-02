@@ -23,12 +23,12 @@ CSV::~CSV()
 {
 }
 
-void CSV::init(vector<Student>* studientList)
+void CSV::init(vector<Student*> * studentList)
 {
-    this->readStudents(studientList);
+    this->readStudents(*studentList);
 }
 
-void CSV::readStudents(vector<Student>* studientList)
+void CSV::readStudents(vector<Student*> & studentList)
 {
     ifstream inFile;
     cout<<"opening file : "<< this->pathToStudents << endl;
@@ -84,12 +84,18 @@ void CSV::readStudents(vector<Student>* studientList)
     }
     int count = 0;
     inFile.getline(tmpLine, 1000);
+    // vector <Student>().swap(studentList);
+    for (auto it : studentList)//手动内存释放
+	    delete it;
+	studentList.clear();
+	vector<Student*>().swap(studentList);
     while (inFile.good())
     {
         ++count;
         string tmpStringLine = tmpLine;
         vector<string> v;
         split(tmpStringLine, v, ",");
+        studentList.push_back(new Student(v[0],v[1],stoi(v[2]),stoi(v[3]),stoi(v[4]),stoi(v[5])));
         inFile.getline(tmpLine, 1000);
     }
 }

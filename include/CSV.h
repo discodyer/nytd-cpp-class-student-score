@@ -22,9 +22,9 @@ public:
     CSV(string pathToStudents, string pathToTeachers);
     ~CSV();
     void setPath(string pathToStudents, string pathToTeachers);
-    void init(vector<Student>* studientList);
+    void init(vector<Student*> * studentList);
 
-    void readStudents(vector<Student>* studientList);
+    void readStudents(vector<Student*>& studentList);
     void readTeachers();
     void writeStudients();
     void writeTeachers();
