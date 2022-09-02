@@ -1,13 +1,3 @@
-/**
- * @file main.cpp
- * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2022-06-10
- * 
- * @copyright Copyright (c) 2022
- * 
- */
 #include "main.h"
 
 using namespace std;
@@ -17,7 +7,7 @@ int main(int argc, char **argv)
     int opt;
     opterr = 0;
     string pathToStudents = "students.csv", pathToTeachers = "teachers.csv"; // the path to .csv list files
-    while( (opt = getopt(argc, argv, "hs:t:")) != -1 ) // reading cmd options
+    while( (opt = getopt(argc, argv, "hs:t:")) != -1 ) // 读取命令行参数
     {
         switch (opt)
         {
@@ -60,12 +50,12 @@ int main(int argc, char **argv)
         cout<<"using default location."<<endl;
     }
 
-    ScoreManagementSystem S(pathToStudents, pathToTeachers);
-    S.start();
+    ScoreManagementSystem S(pathToStudents, pathToTeachers);  // 实例化管理系统
+    S.start();  // 入口函数
     return 0;
 }
 
-void help()
+void help() // 帮助文本
 {
     cout<<"------------------------------------------"<<endl;
     cout<<"-s   [path to Studients.csv]"<<endl;

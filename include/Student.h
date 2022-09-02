@@ -5,10 +5,11 @@
 #include <string>
 #include <vector>
 
-#define LESSON_CHINESE 0
-#define LESSON_ENGLISH 1
-#define LESSON_MATHS 2
-#define LESSON_TOTAL 3
+#define SUBJECT_CHINESE 0
+#define SUBJECT_ENGLISH 1
+#define SUBJECT_MATHS 2
+#define SUBJECT_ALL 3
+#define SUBJECT_NULL -1
 using namespace std;
 
 class Student
@@ -22,8 +23,8 @@ public:
     Student(string id, string name);
     Student();
 
-    void setScore(int lesson, int score);
-    int getScore(int lesson);
+    void setScore(int subject, int score);
+    int getScore(int subject);
     void showScore();
     ~Student();
 };
