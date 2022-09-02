@@ -71,7 +71,7 @@ void CSV::readStudents(vector<Student*> & studentList)
             outFile << "id,name,Chinese,English,Maths,Total" << endl;
             outFile.close();
             cout<< "Created a new file at : "<<pathToStudents<<endl;
-            exit(EXIT_FAILURE);
+            // exit(EXIT_FAILURE);
         }
         else
         {
@@ -99,7 +99,7 @@ void CSV::readStudents(vector<Student*> & studentList)
             outFile << "id,name,Chinese,English,Maths,Total" << endl;
             outFile.close();
             cout<< "Created a new file at : "<<pathToStudents<<endl;
-            exit(EXIT_FAILURE);
+            // exit(EXIT_FAILURE);
         }
         else
         {
@@ -146,7 +146,7 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
             outFile << "id,name,subject" << endl;
             outFile.close();
             cout<< "Created a new file at : "<<pathToTeachers<<endl;
-            exit(EXIT_FAILURE);
+            // exit(EXIT_FAILURE);
         }
         else
         {
@@ -174,7 +174,7 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
             outFile << "id,name,subject" << endl;
             outFile.close();
             cout<< "Created a new file at : "<<pathToTeachers<<endl;
-            exit(EXIT_FAILURE);
+            // exit(EXIT_FAILURE);
         }
         else
         {
