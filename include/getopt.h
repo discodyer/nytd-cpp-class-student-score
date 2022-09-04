@@ -1,7 +1,7 @@
 #ifndef _GETOPT_H
 #define _GETOPT_H
 
-#ifdef _win32
+#ifndef _win32
 #ifdef __cplusplus
 extern "C" {
 #endif 
