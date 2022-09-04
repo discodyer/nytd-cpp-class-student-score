@@ -161,10 +161,11 @@ void ScoreManagementSystem::admin()
                 default:
                     cout<<"Unknown option. Press the Enter key to continue...";
                     cin.get();cin.get();
-                    this->login();
+                    // this->login();
                     break;
                 }
             }
+            break;
         case ('5'):
             this->csv.writeStudents(this->studentList);
             this->csv.writeTeachers(this->teacherList);
@@ -225,6 +226,7 @@ void ScoreManagementSystem::teacher()
                     cin.get();cin.get();
                     break;
                 }
+                break;
             case ('2'):
                 {
                     cout<<"Enter your Name:";
@@ -281,6 +283,7 @@ void ScoreManagementSystem::teacher()
             this->showStudentList();
             break;
         }
+            break;
         case ('2'):
         {
             cout<<"Enter Student ID:";
@@ -316,6 +319,7 @@ void ScoreManagementSystem::teacher()
             cin.get();cin.get();
             break;
         }
+            break;
         case ('3'):
         {
             cout<<"Enter Student Name:";
@@ -351,6 +355,7 @@ void ScoreManagementSystem::teacher()
             cin.get();cin.get();
             break;
         }
+            break;
         case ('4'):
         {
             this->csv.writeStudents(this->studentList);
@@ -359,6 +364,7 @@ void ScoreManagementSystem::teacher()
             cin.get();cin.get();
             break;
         }
+            break;
         case ('5'):
         {
             *psub = SUBJECT_NULL;
@@ -412,6 +418,7 @@ void ScoreManagementSystem::student()
                 cin.get();cin.get();
                 break;
             }
+            break;
         case ('2'):
             {
                 cout<<"Enter your Name:";
@@ -434,6 +441,7 @@ void ScoreManagementSystem::student()
                 cin.get();cin.get();
                 break;
             }
+            break;
         case ('3'):
             {
                 return;
@@ -678,6 +686,7 @@ void ScoreManagementSystem::edit()
                     cin.get();cin.get();
                     break;
                 }
+                break;
             case ('2'):
                 {
                     cout<<"Enter Name:";
@@ -715,6 +724,7 @@ void ScoreManagementSystem::edit()
                     cin.get();cin.get();
                     break;
                 }
+                break;
             case ('3'):
                 {
                     return;
@@ -783,6 +793,7 @@ void ScoreManagementSystem::edit()
                     cin.get();cin.get();
                     break;
                 }
+                break;
             case ('2'):
                 {
                     cout<<"Enter Name:";
@@ -828,6 +839,7 @@ void ScoreManagementSystem::edit()
                     return;
                     break;
                 }
+                break;
             default:
                 {
                     cout<<"Unknown option. Press the Enter key to continue...";
@@ -915,6 +927,7 @@ void ScoreManagementSystem::edit()
                     cin.get();cin.get();
                     break;
                 }
+                break;
             case ('2'):
                 {
                     cout<<"Enter Name:";
@@ -961,6 +974,7 @@ void ScoreManagementSystem::edit()
                     cin.get();cin.get();
                     break;
                 }
+                break;
             case ('3'):
                 {
                     return;
@@ -975,6 +989,7 @@ void ScoreManagementSystem::edit()
             }
         }
         }
+        break;
         case ('6'):
         {
         while(true)
@@ -1040,6 +1055,7 @@ void ScoreManagementSystem::edit()
                     cin.get();cin.get();
                     break;
                 }
+                break;
             case ('2'):
                 {
                     cout<<"Enter Name:";
@@ -1092,6 +1108,7 @@ void ScoreManagementSystem::edit()
                     cin.get();cin.get();
                     break;
             }
+            break;
             case ('3'):
                 {
                     return;
