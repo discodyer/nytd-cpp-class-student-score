@@ -1,3 +1,4 @@
+#ifdef _win32
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
@@ -757,3 +758,4 @@ the above definition of `getopt'.  */
 
 
 #endif /* TEST */
+#endif
