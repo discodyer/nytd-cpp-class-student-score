@@ -98,3 +98,13 @@ int Student::getScore(int subject)
         break;
     }
 }
+
+void Student::setID(string id)
+{
+    this->id=id;
+}
+
+void Student::setName(string name)
+{
+    this->name=name;
+}

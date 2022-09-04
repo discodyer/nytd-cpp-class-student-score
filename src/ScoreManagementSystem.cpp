@@ -101,6 +101,7 @@ void ScoreManagementSystem::login()
     }
     
 }
+
 void ScoreManagementSystem::admin()
 {
     while(true)
@@ -128,7 +129,7 @@ void ScoreManagementSystem::admin()
             cin.get();cin.get();
             break;
         case ('3'):
-            // this->edit();
+            this->edit();
             break;
         case ('4'):
             {
@@ -181,6 +182,7 @@ void ScoreManagementSystem::admin()
     }
     
 }
+
 void ScoreManagementSystem::teacher()
 {
     int subject = SUBJECT_NULL ;
@@ -249,6 +251,9 @@ void ScoreManagementSystem::teacher()
                 break;
             case ('3'):
                 this->showTeacherList();
+                cout<<"Press the Enter key to continue...";
+                cin.get();cin.get();
+                continue;
                 break;
             case ('4'):
                 return;
@@ -359,6 +364,7 @@ void ScoreManagementSystem::teacher()
             *psub = SUBJECT_NULL;
             cout<<"Log out successful. Press the Enter key to continue...";
             cin.get();cin.get();
+            return;
             break;
         }
         default:
@@ -370,6 +376,7 @@ void ScoreManagementSystem::teacher()
         }
     }
 }
+
 void ScoreManagementSystem::student()
 {
     while(true)
@@ -472,6 +479,7 @@ void ScoreManagementSystem::showTeacherList()
     }
     cout<<endl;
 }
+
 void ScoreManagementSystem::showStudentList()
 {
     cout<<"id\t|name\t|Chinese|English|Maths\t|Total"<<endl;
@@ -496,22 +504,22 @@ void ScoreManagementSystem::sort(int subject)
         quickSort(0, this->studentList.size()-1, studentList, subject);
         cout<<"Press the Enter key to continue...";
         cin.get();cin.get();
-        this->login();
+        // this->login();
         break;
     case ('2'):
         quickSort(0, this->studentList.size()-1, studentList, subject);
         std::reverse(studentList.begin(),studentList.end());
         cout<<"Press the Enter key to continue...";
         cin.get();cin.get();
-        this->login();
+        // this->login();
         break;
     case ('3'):
-        this->login();
+        // this->login();
+        return;
         break;
     default:
         cout<<"Unknown option. Press the Enter key to continue...";
         cin.get();cin.get();
-        this->login();
         break;
     }
 }
@@ -544,4 +552,565 @@ void quickSort(int left, int right, vector<Student*>& arr, int subject)
 	arr[i] = temp;
 	quickSort(left, i - 1, arr, subject);//µÝ¹é×ó±ß
 	quickSort(i + 1, right, arr, subject);//µÝ¹éÓÒ±ß
+}
+
+void ScoreManagementSystem::edit()
+{
+    while (true)
+    {
+        cout<<"Edit:"<<endl;
+        cout<<"[1] Add a student"<<endl;
+        cout<<"[2] Add a teacher"<<endl;
+        cout<<"[3] Delete a student"<<endl;
+        cout<<"[4] Delete a teacher"<<endl;
+        cout<<"[5] Edit a student"<<endl;
+        cout<<"[6] Edit a teacher"<<endl;
+        cout<<"[7] View student list"<<endl;
+        cout<<"[8] View teacher list"<<endl;
+        cout<<"[9] Quit"<<endl;
+        cout<<"Enter your option (1-9):";
+        char opt;
+        cin>>opt;
+        switch (opt)
+        {
+        case ('9'):
+            return;
+            break;
+        case ('1'):
+        {
+            while (true)
+            {
+                cout<<"Add a new student:"<<endl;
+                string id,name;
+                cout<<"Enter ID:";
+                cin>>id;
+                cout<<"Enter Name:";
+                cin>>name;
+                studentList.push_back(new Student(id,name));
+                cin.get();
+                cout<<"Continue Add students?[Y/n]";
+                char opt = getchar();
+                if (opt == 'Y' || opt == 'y' || opt == '\n')
+                {
+                    continue;
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+            break;
+        case ('2'):
+        {
+            while (true)
+            {
+                cout<<"Add a new teacher:"<<endl;
+                string id,name,subject;
+                cout<<"Enter ID:";
+                cin>>id;
+                cout<<"Enter Name:";
+                cin>>name;
+                cout<<"Enter Subject:";
+                cin>>subject;
+                teacherList.push_back(new Teacher(id,name,subjectToInt(subject)));
+                cin.get();
+                cout<<"Continue Add teachers?[Y/n]";
+                char opt = getchar();
+                if (opt == 'Y' || opt == 'y' || opt == '\n')
+                {
+                    continue;
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+            break;
+        case ('3'):
+        {
+            while(true)
+        {
+            cout<<"Delete a Student:"<<endl;
+            cout<<"[1] Delete by ID"<<endl;
+            cout<<"[2] Delete by Name"<<endl;
+            cout<<"[3] Back to menu"<<endl;
+            cout<<"Enter your option (1-3):";
+            char opt;
+            cin>>opt;
+            switch (opt)
+            {
+            case ('1'):
+                {
+                    cout<<"Enter ID:";
+                    int count = 0,countDelete=0;
+                    string id;
+                    cin>>id;
+                    for (auto it : this->studentList)
+                    {
+                        count++;
+                        if (it->getID() == id)
+                        {
+                            countDelete++;
+                            it->showScore();
+                            cin.get();
+                            cout<<"Delete this student?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                delete(it);
+                                this->studentList[count]=NULL;
+                                this->studentList.erase(studentList.begin() + count);
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (countDelete == 0)
+                    {
+                        cout<<"ID not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            case ('2'):
+                {
+                    cout<<"Enter Name:";
+                    int count = 0,countDelete=0;
+                    string name;
+                    cin>>name;
+                    for (auto it : this->studentList)
+                    {
+                        count++;
+                        if (it->getName() == name)
+                        {
+                            countDelete++;
+                            it->showScore();
+                            cin.get();
+                            cout<<"Delete this student?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                delete(it);
+                                this->studentList[count]=NULL;
+                                this->studentList.erase(studentList.begin() + count);
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (countDelete == 0)
+                    {
+                        cout<<"Name not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            case ('3'):
+                {
+                    return;
+                    break;
+                }
+            default:
+                {
+                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            }
+        }
+        }
+            break;
+        case ('4'):
+        {
+        while(true)
+        {
+            cout<<"Delete a Teacher:"<<endl;
+            cout<<"[1] Delete by ID"<<endl;
+            cout<<"[2] Delete by Name"<<endl;
+            cout<<"[3] Back to menu"<<endl;
+            cout<<"Enter your option (1-3):";
+            char opt;
+            cin>>opt;
+            switch (opt)
+            {
+            case ('1'):
+                {
+                    cout<<"Enter ID:";
+                    int count = 0,countDelete=0;
+                    string id;
+                    cin>>id;
+                    for (auto it : this->teacherList)
+                    {
+                        count++;
+                        if (it->getID() == id)
+                        {
+                            countDelete++;
+                            cout<<"id\t|name\t\t|subject"<<endl;
+                            cout <<it->getID()<<"\t|"
+                                    <<it->getName()<<"\t|"
+                                    <<intToSubject(it->getSubject())<<endl;
+                            cin.get();
+                            cout<<"Delete this teacher?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                delete(it);
+                                this->teacherList[count]=NULL;
+                                this->teacherList.erase(teacherList.begin() + count);
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (countDelete == 0)
+                    {
+                        cout<<"ID not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            case ('2'):
+                {
+                    cout<<"Enter Name:";
+                    int count = 0,countDelete=0;
+                    string name;
+                    cin>>name;
+                    for (auto it : this->teacherList)
+                    {
+                        count++;
+                        if (it->getName() == name)
+                        {
+                            countDelete++;
+                            cout<<"id\t|name\t\t|subject"<<endl;
+                            cout <<it->getID()<<"\t|"
+                                    <<it->getName()<<"\t|"
+                                    <<intToSubject(it->getSubject())<<endl;
+                            cin.get();
+                            cout<<"Delete this teacher?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                delete(it);
+                                this->teacherList[count]=NULL;
+                                this->teacherList.erase(teacherList.begin() + count);
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (countDelete == 0)
+                    {
+                        cout<<"Name not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            case ('3'):
+                {
+                    return;
+                    break;
+                }
+            default:
+                {
+                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            }
+        }
+        }
+            break;
+        case ('8'):
+            this->showTeacherList();
+            cout<<"Press the Enter key to continue...";
+            cin.get();cin.get();
+            break;
+        case ('7'):
+            this->showStudentList();
+            cout<<"Press the Enter key to continue...";
+            cin.get();cin.get();
+            break;
+        case ('5'):
+        {
+            while(true)
+        {
+            cout<<"Edit a Student:"<<endl;
+            cout<<"[1] Edit by ID"<<endl;
+            cout<<"[2] Edit by Name"<<endl;
+            cout<<"[3] Back to menu"<<endl;
+            cout<<"Enter your option (1-3):";
+            char opt;
+            cin>>opt;
+            switch (opt)
+            {
+            case ('1'):
+                {
+                    cout<<"Enter ID:";
+                    int count = 0;
+                    string id;
+                    cin>>id;
+                    for (auto it : this->studentList)
+                    {
+                        if (it->getID() == id)
+                        {
+                            count++;
+                            it->showScore();
+                            cin.get();
+                            cout<<"Edit this student?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                cout<<"Enter ID:";
+                                string id;
+                                cin>>id;
+                                it->setID(id);
+                                cout<<"Enter Name:";
+                                string name;
+                                cin>>name;
+                                it->setName(name);
+                                cout<<"Enter Chinese score:";
+                                int scoreChinese=0;
+                                cin>>scoreChinese;
+                                it->setScore(subjectToInt("Chinese"), scoreChinese);
+                                cout<<"Enter English score:";
+                                int scoreEnglish=0;
+                                cin>>scoreEnglish;
+                                it->setScore(subjectToInt("English"), scoreEnglish);
+                                cout<<"Enter Maths score:";
+                                int scoreMaths=0;
+                                cin>>scoreMaths;
+                                it->setScore(subjectToInt("Maths"), scoreMaths);
+                                it->showScore();
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        cout<<"ID not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            case ('2'):
+                {
+                    cout<<"Enter Name:";
+                    int count = 0,countDelete=0;
+                    string name;
+                    cin>>name;
+                    for (auto it : this->studentList)
+                    {
+                        if (it->getName() == name)
+                        {
+                            count++;
+                            it->showScore();
+                            cin.get();
+                            cout<<"Edit this student?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                cout<<"Enter Chinese score:";
+                                int scoreChinese=0;
+                                cin>>scoreChinese;
+                                it->setScore(subjectToInt("Chinese"), scoreChinese);
+                                cout<<"Enter English score:";
+                                int scoreEnglish=0;
+                                cin>>scoreEnglish;
+                                it->setScore(subjectToInt("English"), scoreEnglish);
+                                cout<<"Enter Maths score:";
+                                int scoreMaths=0;
+                                cin>>scoreMaths;
+                                it->setScore(subjectToInt("Maths"), scoreMaths);
+                                it->showScore();
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        cout<<"Name not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            case ('3'):
+                {
+                    return;
+                    break;
+                }
+            default:
+                {
+                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            }
+        }
+        }
+        case ('6'):
+        {
+        while(true)
+        {
+            cout<<"Edit a Teacher:"<<endl;
+            cout<<"[1] Edit by ID"<<endl;
+            cout<<"[2] Edit by Name"<<endl;
+            cout<<"[3] Back to menu"<<endl;
+            cout<<"Enter your option (1-3):";
+            char opt;
+            cin>>opt;
+            switch (opt)
+            {
+            case ('1'):
+                {
+                    cout<<"Enter ID:";
+                    int count = 0;
+                    string id;
+                    cin>>id;
+                    for (auto it : this->teacherList)
+                    {
+                        if (it->getID() == id)
+                        {
+                            count++;
+                            cout<<"id\t|name\t\t|subject"<<endl;
+                            cout <<it->getID()<<"\t|"
+                                    <<it->getName()<<"\t|"
+                                    <<intToSubject(it->getSubject())<<endl;
+                            cin.get();
+                            cout<<"Edit this teacher?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                cout<<"Enter ID:";
+                                string id;
+                                cin>>id;
+                                it->setID(id);
+                                cout<<"Enter Name:";
+                                string name;
+                                cin>>name;
+                                it->setName(name);
+                                cout<<"Enter Subject:";
+                                string subject;
+                                cin>>subject;
+                                it->setSubject(subjectToInt(subject));
+                                cout<<"id\t|name\t\t|subject"<<endl;
+                                cout <<it->getID()<<"\t|"
+                                    <<it->getName()<<"\t|"
+                                    <<intToSubject(it->getSubject())<<endl;
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        cout<<"ID not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            case ('2'):
+                {
+                    cout<<"Enter Name:";
+                    int count = 0;
+                    string name;
+                    cin>>name;
+                    for (auto it : this->teacherList)
+                    {
+                        if (it->getName() == name)
+                        {
+                            count++;
+                            cout<<"id\t|name\t\t|subject"<<endl;
+                            cout <<it->getID()<<"\t|"
+                                    <<it->getName()<<"\t|"
+                                    <<intToSubject(it->getSubject())<<endl;
+                            cin.get();
+                            cout<<"Edit this teacher?[Y/n]";
+                            char opt = getchar();
+                            if (opt == 'Y' || opt == 'y' || opt == '\n')
+                            {
+                                cout<<"Enter ID:";
+                                string id;
+                                cin>>id;
+                                it->setID(id);
+                                cout<<"Enter Name:";
+                                string name;
+                                cin>>name;
+                                it->setName(name);
+                                cout<<"Enter Subject:";
+                                string subject;
+                                cin>>subject;
+                                it->setSubject(subjectToInt(subject));
+                                cout<<"id\t|name\t\t|subject"<<endl;
+                                cout <<it->getID()<<"\t|"
+                                    <<it->getName()<<"\t|"
+                                    <<intToSubject(it->getSubject())<<endl;
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        cout<<"Name not found !"<<endl;
+                    }
+                    cout<<"Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+            }
+            case ('3'):
+                {
+                    return;
+                    break;
+                }
+            default:
+                {
+                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    break;
+                }
+            }
+        }
+        }
+            break;
+        default:
+            cout<<"Unknown option. Press the Enter key to continue...";
+            cin.get();cin.get();
+            break;
+        }   
+    }
 }

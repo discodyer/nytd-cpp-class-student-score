@@ -25,6 +25,9 @@ public:
 
     string getID() ;
     string getName();
+    void setID(string id);
+    void setName(string name);
+
     void setScore(int subject, int score);
     int getScore(int subject) ;
     void showScore();
