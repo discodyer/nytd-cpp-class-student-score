@@ -271,9 +271,10 @@ void ScoreManagementSystem::teacher()
         cout<<"[1] view student table"<<endl;
         cout<<"[2] set score by student ID"<<endl;
         cout<<"[3] set score by student Name"<<endl;
-        cout<<"[4] save changes"<<endl;
-        cout<<"[5] Log out"<<endl;
-        cout<<"Enter your option (1-5):";
+        cout<<"[4] Sort Student Tables"<<endl;
+        cout<<"[5] save changes to files"<<endl;
+        cout<<"[6] Log out"<<endl;
+        cout<<"Enter your option (1-6):";
         char opt;
         cin>>opt;
         switch (opt)
@@ -357,6 +358,41 @@ void ScoreManagementSystem::teacher()
         }
             break;
         case ('4'):
+            {
+                cout<<"sort by:"<<endl;
+                cout<<"[1] Chinese"<<endl;
+                cout<<"[2] English"<<endl;
+                cout<<"[3] Maths"<<endl;
+                cout<<"[4] Total"<<endl;
+                cout<<"[5] cancel"<<endl;
+                cout<<"Enter your option (1-6):";
+                char opt;
+                cin>>opt;
+                switch (opt)
+                {
+                case ('1'):
+                    this->sort(subjectToInt("Chinese"));
+                    break;
+                case ('2'):
+                    this->sort(subjectToInt("English"));
+                    break;
+                case ('3'):
+                    this->sort(subjectToInt("Maths"));
+                    break;
+                case ('4'):
+                    this->sort(114514);
+                    break;
+                case ('5'):
+                    break;
+                default:
+                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cin.get();cin.get();
+                    // this->login();
+                    break;
+                }
+            }
+            break;
+        case ('5'):
         {
             this->csv.writeStudents(this->studentList);
             // this->csv.writeTeachers(this->teacherList);
@@ -365,7 +401,7 @@ void ScoreManagementSystem::teacher()
             break;
         }
             break;
-        case ('5'):
+        case ('6'):
         {
             *psub = SUBJECT_NULL;
             cout<<"Log out successful. Press the Enter key to continue...";
