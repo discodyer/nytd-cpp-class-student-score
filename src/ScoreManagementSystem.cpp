@@ -33,14 +33,14 @@ void ScoreManagementSystem::start()
 {
     while(true)
     {
-        cout<<"########################################"<<endl;
-        cout<<"# Welcome to Score Management System ! #"<<endl;
-        cout<<"########################################"<<endl;
-        cout<<"[1] Help manual"<<endl;
-        cout<<"[2] Login"<<endl;
-        cout<<"[3] Reload .csv files"<<endl;
-        cout<<"[4] Quit"<<endl;
-        cout<<"Enter your option (1-4):";
+        cout<<"============================"<<endl;
+        cout<<"# 欢迎来到学生成绩管理系统 ! #"<<endl;
+        cout<<"============================"<<endl;
+        cout<<"[1] 显示帮助文本"<<endl;
+        cout<<"[2] 登陆系统"<<endl;
+        cout<<"[3] 重新读取 .csv 文件"<<endl;
+        cout<<"[4] 退出系统"<<endl;
+        cout<<"请输入你的选择并按回车键继续 (1-4):";
         char opt = '1';
         cin >> opt;
         switch (opt)
@@ -59,7 +59,7 @@ void ScoreManagementSystem::start()
             exit(EXIT_SUCCESS);
             break;
         default:
-            cout<<"Unknown option. Press the Enter key to continue...";
+            cout<<"未知选项，请按回车键继续...";
             cin.get();cin.get();
             break;
         }
@@ -71,12 +71,12 @@ void ScoreManagementSystem::login()
 {
     while(true)
     {
-        cout<<"Login as :"<<endl;
-        cout<<"[1] Administrator"<<endl;
-        cout<<"[2] Teacher"<<endl;
-        cout<<"[3] Student"<<endl;
-        cout<<"[4] Back to Menu"<<endl;
-        cout<<"Enter your option (1-4):";
+        cout<<"选择登陆身份 :"<<endl;
+        cout<<"[1] 管理员"<<endl;
+        cout<<"[2] 教师"<<endl;
+        cout<<"[3] 学生"<<endl;
+        cout<<"[4] 回到主菜单"<<endl;
+        cout<<"请输入你的选择并按回车键继续 (1-4):";
         char id;
         cin>>id;
         switch (id)
@@ -94,7 +94,7 @@ void ScoreManagementSystem::login()
             return;
             break;
         default:
-            cout<<"Unknown option. Press the Enter key to continue...";
+            cout<<"未知选项，请按回车键继续...";
             cin.get();cin.get();
             break;
         }
@@ -106,26 +106,26 @@ void ScoreManagementSystem::admin()
 {
     while(true)
     {
-        cout<<"Login as Admin:"<<endl;
-        cout<<"[1] View teacher table"<<endl;
-        cout<<"[2] View student table"<<endl;
-        cout<<"[3] Edit Tables"<<endl;
-        cout<<"[4] Sort Tables"<<endl;
-        cout<<"[5] Save changes to files"<<endl;
-        cout<<"[6] Back to menu"<<endl;
-        cout<<"Enter your option (1-6):";
+        cout<<"管理员菜单:"<<endl;
+        cout<<"[1] 查看教师列表"<<endl;
+        cout<<"[2] 查看学生列表"<<endl;
+        cout<<"[3] 编辑表格"<<endl;
+        cout<<"[4] 表格排序"<<endl;
+        cout<<"[5] 保存修改到文件"<<endl;
+        cout<<"[6] 回到主菜单"<<endl;
+        cout<<"请输入你的选择并按回车键继续 (1-6):";
         char opt;
         cin>>opt;
         switch (opt)
         {
         case ('1'):
             this->showTeacherList();
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         case ('2'):
             this->showStudentList();
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         case ('3'):
@@ -133,13 +133,13 @@ void ScoreManagementSystem::admin()
             break;
         case ('4'):
             {
-                cout<<"sort by:"<<endl;
-                cout<<"[1] Chinese"<<endl;
-                cout<<"[2] English"<<endl;
-                cout<<"[3] Maths"<<endl;
-                cout<<"[4] Total"<<endl;
-                cout<<"[5] cancel"<<endl;
-                cout<<"Enter your option (1-6):";
+                cout<<"选择排序科目:"<<endl;
+                cout<<"[1] 语文"<<endl;
+                cout<<"[2] 英语"<<endl;
+                cout<<"[3] 数学"<<endl;
+                cout<<"[4] 总分"<<endl;
+                cout<<"[5] 取消"<<endl;
+                cout<<"请输入你的选择并按回车键继续 (1-6):";
                 char opt;
                 cin>>opt;
                 switch (opt)
@@ -159,7 +159,7 @@ void ScoreManagementSystem::admin()
                 case ('5'):
                     break;
                 default:
-                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cout<<"未知选项，请按回车键继续...";
                     cin.get();cin.get();
                     // this->login();
                     break;
@@ -169,14 +169,14 @@ void ScoreManagementSystem::admin()
         case ('5'):
             this->csv.writeStudents(this->studentList);
             this->csv.writeTeachers(this->teacherList);
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         case ('6'):
             return;
             break;
         default:
-            cout<<"Unknown option. Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         }
@@ -192,19 +192,19 @@ void ScoreManagementSystem::teacher()
     {
         if(*psub == SUBJECT_NULL)
         {
-            cout<<"Login as teacher:"<<endl;
-            cout<<"[1] login by ID"<<endl;
-            cout<<"[2] login by Name"<<endl;
-            cout<<"[3] Show teachers list"<<endl;
-            cout<<"[4] Back to menu"<<endl;
-            cout<<"Enter your option (1-4):";
+            cout<<"选择登陆的教师:"<<endl;
+            cout<<"[1] 以ID登陆"<<endl;
+            cout<<"[2] 以教师姓名登陆"<<endl;
+            cout<<"[3] 查看教师列表"<<endl;
+            cout<<"[4] 回到主菜单"<<endl;
+            cout<<"请输入你的选择并按回车键继续 (1-4):";
             char opt;
             cin>>opt;
             switch (opt)
             {
             case ('1'):
                 {
-                    cout<<"Enter your ID:";
+                    cout<<"输入你的ID:";
                     int count = 0;
                     string id;
                     cin>>id;
@@ -213,23 +213,23 @@ void ScoreManagementSystem::teacher()
                         if (it->getID() == id)
                         {
                             count++;
-                            cout<<"Your subject is :"<<intToSubject(it->getSubject())<<endl;
+                            cout<<"你的教师科目是 :"<<intToSubject(it->getSubject())<<endl;
                             *psub = it->getSubject();
                             // break;
                         }
                     }
                     if (count == 0)
                     {
-                        cout<<"ID not found !"<<endl;
+                        cout<<"没有找到ID !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
                 break;
             case ('2'):
                 {
-                    cout<<"Enter your Name:";
+                    cout<<"输入你的姓名:";
                     int count = 0;
                     string name;
                     cin>>name;
@@ -237,23 +237,23 @@ void ScoreManagementSystem::teacher()
                     {
                         if (it->getName() == name)
                         {
-                            cout<<"Your subject is :"<<intToSubject(it->getSubject())<<endl;
+                            cout<<"你的教师科目是 :"<<intToSubject(it->getSubject())<<endl;
                             count++;
                             *psub = it->getSubject();
                         }
                     }
                     if (count == 0)
                     {
-                        cout<<"Name not found !"<<endl;
+                        cout<<"没有找到姓名 !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
                 break;
             case ('3'):
                 this->showTeacherList();
-                cout<<"Press the Enter key to continue...";
+                cout<<"请按回车键继续...";
                 cin.get();cin.get();
                 continue;
                 break;
@@ -261,20 +261,20 @@ void ScoreManagementSystem::teacher()
                 return;
                 break;
             default:
-                cout<<"Unknown option. Press the Enter key to continue...";
+                cout<<"未知选项，请按回车键继续...";
                 cin.get();cin.get();
                 break;
             }
         }
 
-        cout<<"Login as "<<intToSubject(subject)<<" teacher:"<<endl;
-        cout<<"[1] view student table"<<endl;
-        cout<<"[2] set score by student ID"<<endl;
-        cout<<"[3] set score by student Name"<<endl;
-        cout<<"[4] Sort Student Tables"<<endl;
-        cout<<"[5] save changes to files"<<endl;
-        cout<<"[6] Log out"<<endl;
-        cout<<"Enter your option (1-6):";
+        cout<<"正在以 "<<intToSubject(subject)<<" 老师身份登陆:"<<endl;
+        cout<<"[1] 查看学生列表"<<endl;
+        cout<<"[2] 通过学生ID输入成绩"<<endl;
+        cout<<"[3] 通过学生姓名输入成绩"<<endl;
+        cout<<"[4] 排序学生列表"<<endl;
+        cout<<"[5] 保存修改到文件"<<endl;
+        cout<<"[6] 登出"<<endl;
+        cout<<"请输入你的选择并按回车键继续 (1-6):";
         char opt;
         cin>>opt;
         switch (opt)
@@ -287,7 +287,7 @@ void ScoreManagementSystem::teacher()
             break;
         case ('2'):
         {
-            cout<<"Enter Student ID:";
+            cout<<"输入学生ID:";
             int count = 0;
             string id;
             cin>>id;
@@ -299,7 +299,7 @@ void ScoreManagementSystem::teacher()
                     if (it->getScore(subject)==0)
                     {
                         it->showScore();
-                        cout<<"Enter the score:";
+                        cout<<"输入成绩:";
                         int score;
                         cin>> score;
                         it->setScore(subject, score);
@@ -308,22 +308,22 @@ void ScoreManagementSystem::teacher()
                     }
                     else
                     {
-                        cout<<"The score cannot modify."<<endl;
+                        cout<<"成绩不能修改！"<<endl;
                     }
                 }
             }
             if (count == 0)
             {
-                cout<<"ID not found !"<<endl;
+                cout<<"没有找到ID !"<<endl;
             }
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         }
             break;
         case ('3'):
         {
-            cout<<"Enter Student Name:";
+            cout<<"输入学生姓名:";
             int count = 0;
             string name;
             cin>>name;
@@ -335,7 +335,7 @@ void ScoreManagementSystem::teacher()
                     if (it->getScore(subject)==0)
                     {
                         it->showScore();
-                        cout<<"Enter the score:";
+                        cout<<"输入成绩:";
                         int score;
                         cin>> score;
                         it->setScore(subject, score);
@@ -344,28 +344,28 @@ void ScoreManagementSystem::teacher()
                     }
                     else
                     {
-                        cout<<"The score cannot modify."<<endl;
+                        cout<<"成绩不能修改！"<<endl;
                     }
                 }
             }
             if (count == 0)
             {
-                cout<<"Name not found !"<<endl;
+                cout<<"没有找到姓名 !"<<endl;
             }
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         }
             break;
         case ('4'):
             {
-                cout<<"sort by:"<<endl;
-                cout<<"[1] Chinese"<<endl;
-                cout<<"[2] English"<<endl;
-                cout<<"[3] Maths"<<endl;
-                cout<<"[4] Total"<<endl;
-                cout<<"[5] cancel"<<endl;
-                cout<<"Enter your option (1-6):";
+                cout<<"选择排序科目:"<<endl;
+                cout<<"[1] 语文"<<endl;
+                cout<<"[2] 英语"<<endl;
+                cout<<"[3] 数学"<<endl;
+                cout<<"[4] 总分"<<endl;
+                cout<<"[5] 取消"<<endl;
+                cout<<"请输入你的选择并按回车键继续 (1-6):";
                 char opt;
                 cin>>opt;
                 switch (opt)
@@ -385,7 +385,7 @@ void ScoreManagementSystem::teacher()
                 case ('5'):
                     break;
                 default:
-                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cout<<"未知选项，请按回车键继续...";
                     cin.get();cin.get();
                     // this->login();
                     break;
@@ -396,7 +396,7 @@ void ScoreManagementSystem::teacher()
         {
             this->csv.writeStudents(this->studentList);
             // this->csv.writeTeachers(this->teacherList);
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         }
@@ -404,14 +404,14 @@ void ScoreManagementSystem::teacher()
         case ('6'):
         {
             *psub = SUBJECT_NULL;
-            cout<<"Log out successful. Press the Enter key to continue...";
+            cout<<"成功登出，请按回车键继续...";
             cin.get();cin.get();
             return;
             break;
         }
         default:
         {
-            cout<<"Unknown option. Press the Enter key to continue...";
+            cout<<"未知选项，请按回车键继续...";
             cin.get();cin.get();
             break;
         }
@@ -423,18 +423,18 @@ void ScoreManagementSystem::student()
 {
     while(true)
     {
-        cout<<"Login as Student:"<<endl;
-        cout<<"[1] Check by ID"<<endl;
-        cout<<"[2] Check by Name"<<endl;
-        cout<<"[3] Back to menu"<<endl;
-        cout<<"Enter your option (1-3):";
+        cout<<"以学生身份登陆:"<<endl;
+        cout<<"[1] 通过ID查找成绩"<<endl;
+        cout<<"[2] 通过姓名查找成绩"<<endl;
+        cout<<"[3] 回到主菜单"<<endl;
+        cout<<"请输入你的选择并按回车键继续 (1-3):";
         char opt;
         cin>>opt;
         switch (opt)
         {
         case ('1'):
             {
-                cout<<"Enter your ID:";
+                cout<<"输入你的ID:";
                 int count = 0;
                 string id;
                 cin>>id;
@@ -448,16 +448,16 @@ void ScoreManagementSystem::student()
                 }
                 if (count == 0)
                 {
-                    cout<<"ID not found !"<<endl;
+                    cout<<"没有找到ID !"<<endl;
                 }
-                cout<<"Press the Enter key to continue...";
+                cout<<"请按回车键继续...";
                 cin.get();cin.get();
                 break;
             }
             break;
         case ('2'):
             {
-                cout<<"Enter your Name:";
+                cout<<"输入你的姓名:";
                 int count = 0;
                 string name;
                 cin>>name;
@@ -471,9 +471,9 @@ void ScoreManagementSystem::student()
                 }
                 if (count == 0)
                 {
-                    cout<<"Name not found !"<<endl;
+                    cout<<"没有找到姓名 !"<<endl;
                 }
-                cout<<"Press the Enter key to continue...";
+                cout<<"请按回车键继续...";
                 cin.get();cin.get();
                 break;
             }
@@ -485,7 +485,7 @@ void ScoreManagementSystem::student()
             }
         default:
             {
-                cout<<"Unknown option. Press the Enter key to continue...";
+                cout<<"未知选项，请按回车键继续...";
                 cin.get();cin.get();
                 break;
             }
@@ -497,7 +497,7 @@ void ScoreManagementSystem::student()
 void ScoreManagementSystem::reloadFile()
 {
     this->csv.init(&this->studentList, &this->teacherList);
-    cout<<"File reload Sucessful. Press the Enter key to continue...";
+    cout<<"成功保存文件，请按回车键继续...";
     cin.get();cin.get();
 }
 
@@ -508,7 +508,7 @@ void ScoreManagementSystem::helpManual()
     <<"教师：录入学生成绩信息（至少3科），成绩提交后不能修改；"<<endl
     <<"可以对学生成绩进行排序（包括单科、总分）"<<endl
     <<"学生：查询个人成绩信息"<<endl;
-    cout<<"Press the Enter key to continue...";
+    cout<<"请按回车键继续...";
     cin.get();cin.get();
 }
 
@@ -536,24 +536,24 @@ void ScoreManagementSystem::showStudentList()
 
 void ScoreManagementSystem::sort(int subject)
 {
-    cout<<"[1] Small to Big"<<endl;
-    cout<<"[2] Big to Small"<<endl;
-    cout<<"[3] cancel"<<endl;
-    cout<<"Enter your option (1-3):";
+    cout<<"[1] 从小到大排序"<<endl;
+    cout<<"[2] 从大到小排序"<<endl;
+    cout<<"[3] 取消"<<endl;
+    cout<<"请输入你的选择并按回车键继续 (1-3):";
     char opt;
     cin>>opt;
     switch (opt)
     {
     case ('1'):
         quickSort(0, this->studentList.size()-1, studentList, subject);
-        cout<<"Press the Enter key to continue...";
+        cout<<"请按回车键继续...";
         cin.get();cin.get();
         // this->login();
         break;
     case ('2'):
         quickSort(0, this->studentList.size()-1, studentList, subject);
         std::reverse(studentList.begin(),studentList.end());
-        cout<<"Press the Enter key to continue...";
+        cout<<"请按回车键继续...";
         cin.get();cin.get();
         // this->login();
         break;
@@ -562,7 +562,7 @@ void ScoreManagementSystem::sort(int subject)
         return;
         break;
     default:
-        cout<<"Unknown option. Press the Enter key to continue...";
+        cout<<"未知选项，请按回车键继续...";
         cin.get();cin.get();
         break;
     }
@@ -602,17 +602,17 @@ void ScoreManagementSystem::edit()
 {
     while (true)
     {
-        cout<<"Edit:"<<endl;
-        cout<<"[1] Add a student"<<endl;
-        cout<<"[2] Add a teacher"<<endl;
-        cout<<"[3] Delete a student"<<endl;
-        cout<<"[4] Delete a teacher"<<endl;
-        cout<<"[5] Edit a student"<<endl;
-        cout<<"[6] Edit a teacher"<<endl;
-        cout<<"[7] View student list"<<endl;
-        cout<<"[8] View teacher list"<<endl;
-        cout<<"[9] Quit"<<endl;
-        cout<<"Enter your option (1-9):";
+        cout<<"修改菜单:"<<endl;
+        cout<<"[1] 添加一个学生"<<endl;
+        cout<<"[2] 添加一个老师"<<endl;
+        cout<<"[3] 删除一个学生"<<endl;
+        cout<<"[4] 删除一个老师"<<endl;
+        cout<<"[5] 修改一个学生"<<endl;
+        cout<<"[6] 修改一个老师"<<endl;
+        cout<<"[7] 查看学生列表"<<endl;
+        cout<<"[8] 查看老师列表"<<endl;
+        cout<<"[9] 退出"<<endl;
+        cout<<"请输入你的选择并按回车键继续 (1-9):";
         char opt;
         cin>>opt;
         switch (opt)
@@ -624,15 +624,15 @@ void ScoreManagementSystem::edit()
         {
             while (true)
             {
-                cout<<"Add a new student:"<<endl;
+                cout<<"添加一个学生:"<<endl;
                 string id,name;
-                cout<<"Enter ID:";
+                cout<<"输入学生ID:";
                 cin>>id;
-                cout<<"Enter Name:";
+                cout<<"输入学生姓名:";
                 cin>>name;
                 studentList.push_back(new Student(id,name));
                 cin.get();
-                cout<<"Continue Add students?[Y/n]";
+                cout<<"是否继续添加学生?[Y/n]";
                 char opt = getchar();
                 if (opt == 'Y' || opt == 'y' || opt == '\n')
                 {
@@ -649,17 +649,17 @@ void ScoreManagementSystem::edit()
         {
             while (true)
             {
-                cout<<"Add a new teacher:"<<endl;
+                cout<<"添加一个教师:"<<endl;
                 string id,name,subject;
-                cout<<"Enter ID:";
+                cout<<"输入教师ID:";
                 cin>>id;
-                cout<<"Enter Name:";
+                cout<<"输入教师姓名:";
                 cin>>name;
-                cout<<"Enter Subject:";
+                cout<<"输入教师科目:";
                 cin>>subject;
                 teacherList.push_back(new Teacher(id,name,subjectToInt(subject)));
                 cin.get();
-                cout<<"Continue Add teachers?[Y/n]";
+                cout<<"是否继续添加教师?[Y/n]";
                 char opt = getchar();
                 if (opt == 'Y' || opt == 'y' || opt == '\n')
                 {
@@ -676,18 +676,18 @@ void ScoreManagementSystem::edit()
         {
             while(true)
         {
-            cout<<"Delete a Student:"<<endl;
-            cout<<"[1] Delete by ID"<<endl;
-            cout<<"[2] Delete by Name"<<endl;
-            cout<<"[3] Back to menu"<<endl;
-            cout<<"Enter your option (1-3):";
+            cout<<"删除一个学生:"<<endl;
+            cout<<"[1] 通过学生ID删除"<<endl;
+            cout<<"[2] 通过学生姓名删除"<<endl;
+            cout<<"[3] 回到主菜单"<<endl;
+            cout<<"请输入你的选择并按回车键继续 (1-3):";
             char opt;
             cin>>opt;
             switch (opt)
             {
             case ('1'):
                 {
-                    cout<<"Enter ID:";
+                    cout<<"输入ID:";
                     int count = 0,countDelete=0;
                     string id;
                     cin>>id;
@@ -699,7 +699,7 @@ void ScoreManagementSystem::edit()
                             countDelete++;
                             it->showScore();
                             cin.get();
-                            cout<<"Delete this student?[Y/n]";
+                            cout<<"是否删除这个学生?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
@@ -716,16 +716,16 @@ void ScoreManagementSystem::edit()
                     }
                     if (countDelete == 0)
                     {
-                        cout<<"ID not found !"<<endl;
+                        cout<<"没有找到ID !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
                 break;
             case ('2'):
                 {
-                    cout<<"Enter Name:";
+                    cout<<"输入姓名:";
                     int count = 0,countDelete=0;
                     string name;
                     cin>>name;
@@ -737,7 +737,7 @@ void ScoreManagementSystem::edit()
                             countDelete++;
                             it->showScore();
                             cin.get();
-                            cout<<"Delete this student?[Y/n]";
+                            cout<<"是否删除这个学生?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
@@ -754,9 +754,9 @@ void ScoreManagementSystem::edit()
                     }
                     if (countDelete == 0)
                     {
-                        cout<<"Name not found !"<<endl;
+                        cout<<"没有找到姓名 !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
@@ -768,7 +768,7 @@ void ScoreManagementSystem::edit()
                 }
             default:
                 {
-                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cout<<"未知选项，请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
@@ -780,18 +780,18 @@ void ScoreManagementSystem::edit()
         {
         while(true)
         {
-            cout<<"Delete a Teacher:"<<endl;
-            cout<<"[1] Delete by ID"<<endl;
-            cout<<"[2] Delete by Name"<<endl;
-            cout<<"[3] Back to menu"<<endl;
-            cout<<"Enter your option (1-3):";
+            cout<<"删除一个教师:"<<endl;
+            cout<<"[1] 通过ID删除"<<endl;
+            cout<<"[2] 通过姓名删除"<<endl;
+            cout<<"[3] 回到菜单"<<endl;
+            cout<<"请输入你的选择并按回车键继续 (1-3):";
             char opt;
             cin>>opt;
             switch (opt)
             {
             case ('1'):
                 {
-                    cout<<"Enter ID:";
+                    cout<<"输入ID:";
                     int count = 0,countDelete=0;
                     string id;
                     cin>>id;
@@ -806,7 +806,7 @@ void ScoreManagementSystem::edit()
                                     <<it->getName()<<"\t|"
                                     <<intToSubject(it->getSubject())<<endl;
                             cin.get();
-                            cout<<"Delete this teacher?[Y/n]";
+                            cout<<"是否删除这个教师?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
@@ -823,16 +823,16 @@ void ScoreManagementSystem::edit()
                     }
                     if (countDelete == 0)
                     {
-                        cout<<"ID not found !"<<endl;
+                        cout<<"没有找到ID !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
                 break;
             case ('2'):
                 {
-                    cout<<"Enter Name:";
+                    cout<<"输入姓名:";
                     int count = 0,countDelete=0;
                     string name;
                     cin>>name;
@@ -847,7 +847,7 @@ void ScoreManagementSystem::edit()
                                     <<it->getName()<<"\t|"
                                     <<intToSubject(it->getSubject())<<endl;
                             cin.get();
-                            cout<<"Delete this teacher?[Y/n]";
+                            cout<<"是否删除这个教师?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
@@ -864,9 +864,9 @@ void ScoreManagementSystem::edit()
                     }
                     if (countDelete == 0)
                     {
-                        cout<<"Name not found !"<<endl;
+                        cout<<"没有找到姓名 !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
@@ -878,7 +878,7 @@ void ScoreManagementSystem::edit()
                 break;
             default:
                 {
-                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cout<<"未知选项，请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
@@ -888,30 +888,30 @@ void ScoreManagementSystem::edit()
             break;
         case ('8'):
             this->showTeacherList();
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         case ('7'):
             this->showStudentList();
-            cout<<"Press the Enter key to continue...";
+            cout<<"请按回车键继续...";
             cin.get();cin.get();
             break;
         case ('5'):
         {
             while(true)
         {
-            cout<<"Edit a Student:"<<endl;
-            cout<<"[1] Edit by ID"<<endl;
-            cout<<"[2] Edit by Name"<<endl;
-            cout<<"[3] Back to menu"<<endl;
-            cout<<"Enter your option (1-3):";
+            cout<<"编辑一个学生:"<<endl;
+            cout<<"[1] 通过ID编辑"<<endl;
+            cout<<"[2] 通过姓名编辑"<<endl;
+            cout<<"[3] 回到菜单"<<endl;
+            cout<<"请输入你的选择并按回车键继续 (1-3):";
             char opt;
             cin>>opt;
             switch (opt)
             {
             case ('1'):
                 {
-                    cout<<"Enter ID:";
+                    cout<<"输入ID:";
                     int count = 0;
                     string id;
                     cin>>id;
@@ -922,27 +922,27 @@ void ScoreManagementSystem::edit()
                             count++;
                             it->showScore();
                             cin.get();
-                            cout<<"Edit this student?[Y/n]";
+                            cout<<"是否修改这个学生?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
-                                cout<<"Enter ID:";
+                                cout<<"输入ID:";
                                 string id;
                                 cin>>id;
                                 it->setID(id);
-                                cout<<"Enter Name:";
+                                cout<<"输入姓名:";
                                 string name;
                                 cin>>name;
                                 it->setName(name);
-                                cout<<"Enter Chinese score:";
+                                cout<<"输入语文成绩:";
                                 int scoreChinese=0;
                                 cin>>scoreChinese;
                                 it->setScore(subjectToInt("Chinese"), scoreChinese);
-                                cout<<"Enter English score:";
+                                cout<<"输入英语成绩:";
                                 int scoreEnglish=0;
                                 cin>>scoreEnglish;
                                 it->setScore(subjectToInt("English"), scoreEnglish);
-                                cout<<"Enter Maths score:";
+                                cout<<"输入数学成绩:";
                                 int scoreMaths=0;
                                 cin>>scoreMaths;
                                 it->setScore(subjectToInt("Maths"), scoreMaths);
@@ -957,16 +957,16 @@ void ScoreManagementSystem::edit()
                     }
                     if (count == 0)
                     {
-                        cout<<"ID not found !"<<endl;
+                        cout<<"没有找到ID !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
                 break;
             case ('2'):
                 {
-                    cout<<"Enter Name:";
+                    cout<<"输入姓名:";
                     int count = 0,countDelete=0;
                     string name;
                     cin>>name;
@@ -977,19 +977,19 @@ void ScoreManagementSystem::edit()
                             count++;
                             it->showScore();
                             cin.get();
-                            cout<<"Edit this student?[Y/n]";
+                            cout<<"是否修改这个学生?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
-                                cout<<"Enter Chinese score:";
+                                cout<<"输入语文成绩:";
                                 int scoreChinese=0;
                                 cin>>scoreChinese;
                                 it->setScore(subjectToInt("Chinese"), scoreChinese);
-                                cout<<"Enter English score:";
+                                cout<<"输入英语成绩:";
                                 int scoreEnglish=0;
                                 cin>>scoreEnglish;
                                 it->setScore(subjectToInt("English"), scoreEnglish);
-                                cout<<"Enter Maths score:";
+                                cout<<"输入数学成绩:";
                                 int scoreMaths=0;
                                 cin>>scoreMaths;
                                 it->setScore(subjectToInt("Maths"), scoreMaths);
@@ -1004,9 +1004,9 @@ void ScoreManagementSystem::edit()
                     }
                     if (count == 0)
                     {
-                        cout<<"Name not found !"<<endl;
+                        cout<<"没有找到姓名 !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
@@ -1018,7 +1018,7 @@ void ScoreManagementSystem::edit()
                 }
             default:
                 {
-                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cout<<"未知选项，请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
@@ -1030,18 +1030,18 @@ void ScoreManagementSystem::edit()
         {
         while(true)
         {
-            cout<<"Edit a Teacher:"<<endl;
-            cout<<"[1] Edit by ID"<<endl;
-            cout<<"[2] Edit by Name"<<endl;
-            cout<<"[3] Back to menu"<<endl;
-            cout<<"Enter your option (1-3):";
+            cout<<"修改教师:"<<endl;
+            cout<<"[1] 通过ID编辑"<<endl;
+            cout<<"[2] 通过姓名编辑"<<endl;
+            cout<<"[3] 回到菜单"<<endl;
+            cout<<"请输入你的选择并按回车键继续 (1-3):";
             char opt;
             cin>>opt;
             switch (opt)
             {
             case ('1'):
                 {
-                    cout<<"Enter ID:";
+                    cout<<"输入ID:";
                     int count = 0;
                     string id;
                     cin>>id;
@@ -1055,19 +1055,19 @@ void ScoreManagementSystem::edit()
                                     <<it->getName()<<"\t|"
                                     <<intToSubject(it->getSubject())<<endl;
                             cin.get();
-                            cout<<"Edit this teacher?[Y/n]";
+                            cout<<"是否修改这位教师?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
-                                cout<<"Enter ID:";
+                                cout<<"输入ID:";
                                 string id;
                                 cin>>id;
                                 it->setID(id);
-                                cout<<"Enter Name:";
+                                cout<<"输入姓名:";
                                 string name;
                                 cin>>name;
                                 it->setName(name);
-                                cout<<"Enter Subject:";
+                                cout<<"输入科目:";
                                 string subject;
                                 cin>>subject;
                                 it->setSubject(subjectToInt(subject));
@@ -1085,16 +1085,16 @@ void ScoreManagementSystem::edit()
                     }
                     if (count == 0)
                     {
-                        cout<<"ID not found !"<<endl;
+                        cout<<"没有找到ID !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
                 break;
             case ('2'):
                 {
-                    cout<<"Enter Name:";
+                    cout<<"输入姓名:";
                     int count = 0;
                     string name;
                     cin>>name;
@@ -1108,19 +1108,19 @@ void ScoreManagementSystem::edit()
                                     <<it->getName()<<"\t|"
                                     <<intToSubject(it->getSubject())<<endl;
                             cin.get();
-                            cout<<"Edit this teacher?[Y/n]";
+                            cout<<"是否修改这位教师?[Y/n]";
                             char opt = getchar();
                             if (opt == 'Y' || opt == 'y' || opt == '\n')
                             {
-                                cout<<"Enter ID:";
+                                cout<<"输入ID:";
                                 string id;
                                 cin>>id;
                                 it->setID(id);
-                                cout<<"Enter Name:";
+                                cout<<"输入姓名:";
                                 string name;
                                 cin>>name;
                                 it->setName(name);
-                                cout<<"Enter Subject:";
+                                cout<<"输入科目:";
                                 string subject;
                                 cin>>subject;
                                 it->setSubject(subjectToInt(subject));
@@ -1138,9 +1138,9 @@ void ScoreManagementSystem::edit()
                     }
                     if (count == 0)
                     {
-                        cout<<"Name not found !"<<endl;
+                        cout<<"没有找到姓名 !"<<endl;
                     }
-                    cout<<"Press the Enter key to continue...";
+                    cout<<"请按回车键继续...";
                     cin.get();cin.get();
                     break;
             }
@@ -1152,7 +1152,7 @@ void ScoreManagementSystem::edit()
                 }
             default:
                 {
-                    cout<<"Unknown option. Press the Enter key to continue...";
+                    cout<<"未知选项，请按回车键继续...";
                     cin.get();cin.get();
                     break;
                 }
@@ -1161,7 +1161,7 @@ void ScoreManagementSystem::edit()
         }
             break;
         default:
-            cout<<"Unknown option. Press the Enter key to continue...";
+            cout<<"未知选项，请按回车键继续...";
             cin.get();cin.get();
             break;
         }   

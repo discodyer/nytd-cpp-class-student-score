@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     return 0;
 }
 
-void help() // 帮助文本
+void help() // 命令行帮助文本
 {
     cout<<"------------------------------------------"<<endl;
     cout<<"-s   [path to Studients.csv]"<<endl;
