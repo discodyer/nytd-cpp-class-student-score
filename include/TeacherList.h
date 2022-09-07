@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Student.h"
+#include "StudentList.h"
 #define TEACHER_NOT_FOUND -1
 
 using namespace std;

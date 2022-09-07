@@ -16,7 +16,7 @@ void StudentList::deleteOne(int i)
     {
         if (i < this->list.size() && i > 0)
         {
-            auto iter = this->list.erase(this->list.begin() + i);
+            this->list.erase(this->list.begin() + i);
         }
         else if (this->list.size() == 0 || this->list.size() == 1)
         {

@@ -25,9 +25,9 @@ void ScoreManagementSystem::start()
 {
     while (true)
     {
-        cout << "============================" << endl;
+        cout << "==============================" << endl;
         cout << "# 欢迎来到学生成绩管理系统 ! #" << endl;
-        cout << "============================" << endl;
+        cout << "==============================" << endl;
         cout << "[1] 显示帮助文本" << endl;
         cout << "[2] 登陆系统" << endl;
         cout << "[3] 重新读取 .csv 文件" << endl;
