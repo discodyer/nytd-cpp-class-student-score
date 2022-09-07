@@ -4,23 +4,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Student.h"
-#include "Teacher.h"
+#include "StudentList.h"
+#include "TeacherList.h"
 #include "CSV.h"
 #include <algorithm>
 
 using namespace std;
 
-void quickSort(int left, int right, vector<Student*>& arr, int subject);
+// void quickSort(int left, int right, vector<Student*>& arr, int subject);
 
 class ScoreManagementSystem
 {
 private:
-    vector<Student*> studentList;
-    vector<Teacher*> teacherList;
-    CSV csv;
+    StudentList slist;
+    TeacherList tlist;
+    string pathToStudents = "students.csv", pathToTeachers = "teachers.csv";
 public:
-    ScoreManagementSystem(string pathToStudents, string pathToTeachers); // ¹¹Ôìº¯Êý
+    ScoreManagementSystem(string pathToStudents, string pathToTeachers);
     ~ScoreManagementSystem();
     void start();
     void login();
@@ -31,7 +31,7 @@ public:
     void reloadFile();
     void showTeacherList();
     void showStudentList();
-    void sort(int subject);
+    // void sort(int subject);
     void edit();
 };
 

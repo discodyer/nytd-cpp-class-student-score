@@ -43,10 +43,16 @@ CSV::~CSV()
 }
 
 
-void CSV::init(vector<Student*> * studentList, vector<Teacher*> * teacherList)
+void CSV::read(StudentList* slist, TeacherList* tlist)
 {
-    this->readStudents(*studentList);
-    this->readTeachers(*teacherList);
+    this->readStudents(slist);
+    this->readTeachers(tlist);
+}
+
+void CSV::save(StudentList* slist, TeacherList* tlist)
+{
+    this->writeStudents(slist);
+    this->writeTeachers(tlist);
 }
 
 /**
@@ -54,7 +60,7 @@ void CSV::init(vector<Student*> * studentList, vector<Teacher*> * teacherList)
  * 
  * @param studentList 学生数组
  */
-void CSV::readStudents(vector<Student*> & studentList)
+void CSV::readStudents(StudentList* slist)
 {
     ifstream inFile;
     cout<<"opening file : "<< this->pathToStudents << endl;
@@ -109,11 +115,7 @@ void CSV::readStudents(vector<Student*> & studentList)
         }
     }
 
-    // vector <Student>().swap(studentList);
-    for (auto it : studentList)//手动内存释放
-	    delete it;
-	studentList.clear();
-	vector<Student*>().swap(studentList);
+    slist->deleteAll(); 
 
     // int count = 0;
     for(int i=0;i<1000;i++)
@@ -127,7 +129,7 @@ void CSV::readStudents(vector<Student*> & studentList)
         cout<<'.';
         vector<string> v;
         split(tmpLine, v, ","); // 将读取到的行切分成字符串数组v
-        studentList.push_back(new Student(v[0],v[1],stoi(v[2]),stoi(v[3]),stoi(v[4]),stoi(v[5]))); // 将读取到的一行转换为Student对象
+        slist->add(v[0],v[1],stoi(v[2]),stoi(v[3]),stoi(v[4])); // 将读取到的一行转换为Student对象
         for(int i=0;i<1000;i++)
         {
             tmpLine[i] = '\0';
@@ -137,7 +139,7 @@ void CSV::readStudents(vector<Student*> & studentList)
     cout<<"Done."<<endl;
 }
 
-void CSV::readTeachers(vector<Teacher*> & teacherList)
+void CSV::readTeachers(TeacherList* tlist)
 {
     ifstream inFile;
     cout<<"opening file : "<< this->pathToTeachers << endl;
@@ -192,10 +194,7 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
         }
     }
 
-    for (auto it : teacherList)//手动内存释放
-	    delete it;
-	teacherList.clear();
-	vector<Teacher*>().swap(teacherList);
+    tlist->deleteAll();
 
     // int count = 0;
     for(int i=0;i<1000;i++)
@@ -209,7 +208,7 @@ void CSV::readTeachers(vector<Teacher*> & teacherList)
         cout<<'.';
         vector<string> v;
         split(tmpLine, v, ","); // 将读取到的行切分成字符串数组v
-        teacherList.push_back(new Teacher(v[0],v[1],subjectToInt(v[2]))); // 将读取到的一行转换为Student对象
+        tlist->add(v[0],v[1],subjectToInt(v[2])); // 将读取到的一行转换为Student对象
         for(int i=0;i<1000;i++)
         {
             tmpLine[i] = '\0';
@@ -296,34 +295,34 @@ void split(string str,vector<string> &v,string spacer)
 }
 
 
-void CSV::writeStudents(vector<Student*> & studentList)
+void CSV::writeStudents(StudentList* slist)
 {
     ofstream outFile;
     outFile.open(pathToStudents);
     outFile << "id,name,Chinese,English,Maths,Total" << endl;
-    for (auto it : studentList)
+    for (int i=0;i<slist->getSize();i++)
     {
-        outFile <<it->getID()<<','
-                <<it->getName()<<','
-                <<it->getScore(subjectToInt("Chinese"))<<','
-                <<it->getScore(subjectToInt("English"))<<','
-                <<it->getScore(subjectToInt("Maths"))<<','
-                <<it->getScore(114514)<<endl;
+        outFile <<slist->getID(i)<<','
+                <<slist->getName(i)<<','
+                <<slist->getScore(i,subjectToInt("Chinese"))<<','
+                <<slist->getScore(i,subjectToInt("English"))<<','
+                <<slist->getScore(i,subjectToInt("Maths"))<<','
+                <<slist->getScore(i,114514)<<endl;
     }
     outFile.close();
     cout<< "File saved at : "<<pathToStudents<<endl;
 }
 
-void CSV::writeTeachers(vector<Teacher*> & teacherList)
+void CSV::writeTeachers(TeacherList* tlist)
 {
     ofstream outFile;
     outFile.open(pathToTeachers);
     outFile << "id,name,subject" << endl;
-    for (auto it : teacherList)
+    for (int i=0;i<tlist->getSize();i++)
     {
-        outFile <<it->getID()<<','
-                <<it->getName()<<','
-                <<intToSubject(it->getSubject())<<endl;
+        outFile <<tlist->getID(i)<<','
+                <<tlist->getName(i)<<','
+                <<intToSubject(tlist->getSubject(i))<<endl;
     }
     outFile.close();
     cout<< "File saved at : "<<pathToTeachers<<endl;

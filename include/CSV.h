@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Student.h"
-#include "Teacher.h"
+#include "StudentList.h"
+#include "TeacherList.h"
 #include <fstream>
 #include <cstdlib>
 
@@ -26,12 +26,13 @@ public:
     CSV(string pathToStudents, string pathToTeachers);
     ~CSV();
     void setPath(string pathToStudents, string pathToTeachers);
-    void init(vector<Student*> * studentList, vector<Teacher*> * teacherList);
+    void read(StudentList* slist, TeacherList* tlist);
+    void save(StudentList* slist, TeacherList* tlist);
 
-    void readStudents(vector<Student*> & studentList);
-    void readTeachers(vector<Teacher*> & teacherList);
-    void writeStudents(vector<Student*> & studentList);
-    void writeTeachers(vector<Teacher*> & teacherList);
+    void readStudents(StudentList* slist);
+    void readTeachers(TeacherList* tlist);
+    void writeStudents(StudentList* slist);
+    void writeTeachers(TeacherList* tlist);
 };
 
 #endif
